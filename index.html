@@ -50,8 +50,17 @@
 
     <section class="js">
       <h2>
-        JS:
+        JS - detect input:
         <span id="input-type">
+          checking…
+        </span>
+      </h2>
+    </section>
+
+    <section class="listen">
+      <h2>
+        JS - listen to input:
+        <span id="input-type-listen">
           checking…
         </span>
       </h2>
@@ -64,14 +73,40 @@
         navigator.maxTouchPoints > 0 || // future IE
         navigator.msMaxTouchPoints > 0 // current IE10
       ) {
-        placeholder.innerHTML = "Supports touch";
+        placeholder.innerHTML = "Coarse (touch)";
       } else {
-        placeholder.innerHTML = "Not touch";
+        placeholder.innerHTML = "No touch detected";
       }
 
       window.onresize = () => {
         location.reload();
       };
+
+      const placeholderListen = document.getElementById("input-type-listen");
+
+      function listenForInput() {
+        // Touch
+        window.addEventListener(
+          "touchstart",
+          function onFirstTouch() {
+            placeholderListen.innerHTML = "Coarse (touch)";
+
+            // window.removeEventListener("touchstart", onFirstTouch, false);
+          },
+          false
+        );
+
+        // Pointer
+        window.addEventListener(
+          "mouseover",
+          function onFirstHover() {
+            placeholderListen.innerHTML = "Fine (mouse)";
+            // window.removeEventListener("mouseover", onFirstHover, false);
+          },
+          false
+        );
+      }
+      listenForInput();
     </script>
   </body>
 </html>
