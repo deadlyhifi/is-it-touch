@@ -76,22 +76,44 @@
     </section>
 
     <script>
-      const placeholder = document.getElementById("input-type");
       document.getElementById("userAgent").innerHTML = navigator.userAgent;
+
+      //////////////////////////////////////////////////////////////////////////
+      const placeholderCss = document.getElementById("input-type");
       if (
         "ontouchstart" in window || // html5 browsers
         navigator.maxTouchPoints > 0 || // future IE
         navigator.msMaxTouchPoints > 0 // current IE10
       ) {
-        placeholder.innerHTML = "Coarse (touch)";
+        placeholderCss.innerHTML = "Coarse (touch)";
       } else {
-        placeholder.innerHTML = "No touch detected";
+        placeholderCss.innerHTML = "No touch detected";
       }
 
-      window.onresize = () => {
+      function debounce(func, wait, immediate) {
+        let timeout;
+        return function() {
+          const context = this;
+          const args = arguments;
+          const later = function() {
+            timeout = null;
+            if (!immediate) func.apply(context, args);
+          };
+          const callNow = immediate && !timeout;
+          clearTimeout(timeout);
+          timeout = setTimeout(later, wait);
+          if (callNow) {
+            func.apply(context, args);
+          }
+        };
+      }
+      const listenForResize = debounce(function() {
         location.reload();
-      };
+      }, 250);
 
+      window.addEventListener("resize", listenForResize);
+
+      //////////////////////////////////////////////////////////////////////////
       const placeholderListen = document.getElementById("input-type-listen");
 
       function listenForInput() {
