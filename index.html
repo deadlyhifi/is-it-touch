@@ -60,8 +60,8 @@
 
     <section class="js">
       <h2>
-        JS - detect input:
-        <span id="input-type">
+        JS - "ontouchstart" in window:
+        <span id="input-detect">
           checking…
         </span>
       </h2>
@@ -69,8 +69,8 @@
 
     <section class="listen">
       <h2>
-        JS - listen to input:
-        <span id="input-type-listen">
+        JS - listen to input type:
+        <span id="input-listen">
           checking…
         </span>
       </h2>
@@ -80,7 +80,7 @@
       document.getElementById("userAgent").innerHTML = navigator.userAgent;
 
       //////////////////////////////////////////////////////////////////////////
-      const placeholderCss = document.getElementById("input-type");
+      const placeholderCss = document.getElementById("input-detect");
       if (
         "ontouchstart" in window || // html5 browsers
         navigator.maxTouchPoints > 0 || // future IE
@@ -91,7 +91,7 @@
         placeholderCss.innerHTML = "No touch detected";
       }
 
-      const placeholderListen = document.getElementById("input-type-listen");
+      const placeholderListen = document.getElementById("input-listen");
 
       function listenForInput() {
         // Touch
