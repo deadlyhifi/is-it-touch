@@ -91,30 +91,6 @@
         placeholderCss.innerHTML = "No touch detected";
       }
 
-      function debounce(func, wait, immediate) {
-        let timeout;
-        return function() {
-          const context = this;
-          const args = arguments;
-          const later = function() {
-            timeout = null;
-            if (!immediate) func.apply(context, args);
-          };
-          const callNow = immediate && !timeout;
-          clearTimeout(timeout);
-          timeout = setTimeout(later, wait);
-          if (callNow) {
-            func.apply(context, args);
-          }
-        };
-      }
-      // const listenForResize = debounce(function() {
-      //   location.reload();
-      // }, 250);
-
-      // window.addEventListener("resize", listenForResize);
-
-      //////////////////////////////////////////////////////////////////////////
       const placeholderListen = document.getElementById("input-type-listen");
 
       function listenForInput() {
@@ -124,7 +100,7 @@
           function onFirstTouch() {
             placeholderListen.innerHTML = "Coarse (touch)";
 
-            window.removeEventListener("touchstart", onFirstTouch, false);
+            // window.removeEventListener("touchstart", onFirstTouch, false);
           },
           false
         );
@@ -135,7 +111,7 @@
           function onFirstHover() {
             placeholderListen.innerHTML = "Fine (mouse)";
 
-            window.removeEventListener("mouseover", onFirstHover, false);
+            // window.removeEventListener("mouseover", onFirstHover, false);
           },
           false
         );
