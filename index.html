@@ -3,11 +3,12 @@
   <head>
     <style>
       body {
+        box-sizing: border-box;
         font-family: monospace;
         text-align: center;
         margin: 0;
         padding: 20px;
-        height: calc(100vh - 40px);
+        height: calc(var(--vh, 1vh) * 100);
         background-color: aliceblue;
         display: flex;
         flex-direction: column;
@@ -132,6 +133,12 @@
         );
       }
       listenForInput();
+      
+      // 100vh height hack for "mobile". https://css-tricks.com/the-trick-to-viewport-units-on-mobile/
+      document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
+      window.addEventListener("resize", () => {
+        document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
+      });
     </script>
   </body>
 </html>
