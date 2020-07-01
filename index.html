@@ -60,7 +60,7 @@
 
     <section class="js">
       <h2>
-        JS - "ontouchstart" in window:
+        JS – "ontouchstart":
         <span id="input-detect">
           checking…
         </span>
@@ -69,11 +69,18 @@
 
     <section class="listen">
       <h2>
-        JS - listen to input type:
+        JS – listen:
         <span id="input-listen">
           checking…
         </span>
       </h2>
+    </section>
+    
+    <section>
+      <h2>How does this work?</h2>
+      <p><strong>CSS</strong>: this checks via @media pointer: coarse/fine.</p>
+      <p><strong>JS – "ontouchstart"</strong>: checks for "ontouchstart" in window, detecting that touch is an available input method.</p>
+      <p><strong>JS – listen</strong>: updates based on the last input method ("touchstart" or "mouseover").</p>
     </section>
 
     <script>
