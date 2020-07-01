@@ -37,6 +37,10 @@
           content: "Fine (mouse)";
         }
       }
+      .explain {
+        background-color: indianred;
+        padding: 10px;
+      }
     </style>
   </head>
   <body>
@@ -80,7 +84,7 @@
       </h2>
     </section>
     
-    <section>
+    <section class="explain">
       <h2>How does this work?</h2>
       <p><strong>CSS</strong>: this checks via @media pointer: coarse/fine.</p>
       <p><strong>JS – "ontouchstart"</strong>: checks for "ontouchstart" in window, detecting that touch is an available input method.</p>
