@@ -7,7 +7,11 @@
         text-align: center;
         margin: 0;
         padding: 20px;
+        height: calc(100vh - 40px);
         background-color: aliceblue;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
       }
       @media (pointer: none) {
         .css .input-type span {
@@ -33,10 +37,14 @@
           content: "Fine (mouse)";
         }
       }
+      .explain {
+        background-color: indianred;
+        padding: 10px;
+      }
     </style>
   </head>
   <body>
-    <h1>Input device detection</h1>
+    <h1>Device Input Detection</h1>
 
     <section class="userAgent">
       <p>
@@ -76,7 +84,7 @@
       </h2>
     </section>
     
-    <section>
+    <section class="explain">
       <h2>How does this work?</h2>
       <p><strong>CSS</strong>: this checks via @media pointer: coarse/fine.</p>
       <p><strong>JS – "ontouchstart"</strong>: checks for "ontouchstart" in window, detecting that touch is an available input method.</p>
@@ -86,7 +94,6 @@
     <script>
       document.getElementById("userAgent").innerHTML = navigator.userAgent;
 
-      //////////////////////////////////////////////////////////////////////////
       const placeholderCss = document.getElementById("input-detect");
       if (
         "ontouchstart" in window || // html5 browsers
