@@ -14,30 +14,27 @@
         flex-direction: column;
         justify-content: space-between;
       }
+      ul { list-style: none; padding: 0; }
+      
+      [class^="input-css-type__"] span:after { content: "×"; }
       @media (pointer: none) {
-        .css .input-type span {
-          display: none;
-        }
-        .css .input-type:after {
-          content: "None";
+        .input-css-type__none span:after {
+          content: "✓";
         }
       }
+  
       @media (pointer: coarse) {
-        .css .input-type span {
-          display: none;
-        }
-        .css .input-type:after {
-          content: "Coarse (touch)";
+        .input-css-type__course span:after {
+          content: "✓";
         }
       }
+
       @media (pointer: fine) {
-        .css .input-type span {
-          display: none;
-        }
-        .css .input-type:after {
-          content: "Fine (mouse)";
+        .input-css-type__fine span:after {
+          content: "✓";
         }
       }
+
       .explain {
         background-color: indianred;
         padding: 10px;
@@ -58,19 +55,19 @@
 
     <section class="css">
       <h2>
-        CSS:
-        <span class="input-type">
-          <span>
-            checking…
-          </span>
-        </span>
+        CSS Pointer:
+        <ul>
+          <li class="input-css-type__none">None: <span></span></li>
+          <li class="input-css-type__course">Course (touch): <span></span></li>
+          <li class="input-css-type__fine">Fine (mouse): <span></span></li>
+        </ul>
       </h2>
     </section>
 
     <section class="js">
       <h2>
         JS – "ontouchstart":
-        <span id="input-detect">
+        <span id="input-js-detect">
           checking…
         </span>
       </h2>
@@ -79,7 +76,7 @@
     <section class="listen">
       <h2>
         JS – listen:
-        <span id="input-listen">
+        <span id="input-js-listen">
           checking…
         </span>
       </h2>
@@ -96,7 +93,7 @@
     <script>
       document.getElementById("userAgent").innerHTML = navigator.userAgent;
 
-      const placeholderCss = document.getElementById("input-detect");
+      const placeholderCss = document.getElementById("input-js-detect");
       if (
         "ontouchstart" in window || // html5 browsers
         navigator.maxTouchPoints > 0 || // future IE
@@ -107,7 +104,7 @@
         placeholderCss.innerHTML = "No touch detected";
       }
 
-      const placeholderListen = document.getElementById("input-listen");
+      const placeholderListen = document.getElementById("input-js-listen");
 
       function listenForInput() {
         // Touch
